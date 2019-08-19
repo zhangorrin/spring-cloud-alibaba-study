@@ -1,0 +1,15 @@
+server:
+  port: 18081
+spring:
+  application:
+    name: service-producer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-srv:8848
+      config:
+        server-addr: nacos-srv:8848
+        file-extension: yaml
+    sentinel:
+      transport:
+        dashboard: nacos-srv:18080

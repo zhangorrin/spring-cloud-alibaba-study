@@ -1,0 +1,27 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+dubbo:
+  consumer:
+    # 在使用Spring Cloud注册中心时设置false会出现引用错误，等待官方修复
+    check: false
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    #address: spring-cloud://localhost
+    address: nacos://nacos-srv:8848
+
+  cloud:
+    # 用于服务消费方订阅服务提供方的应用名称的列表，若需订阅多应用，使用 "," 分割。 不推荐使用默认值为 "*"，它将订阅所有应用
+    subscribed-services: service-producer
+
+feign:
+  sentinel:
+    enabled: true
+
+logging:
+  level:
+    root: info

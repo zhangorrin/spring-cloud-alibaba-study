@@ -1,0 +1,23 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: service-consumer
+          uri: lb://service-consumer
+          predicates:
+            - Path=/api/srv-consumer/**
+          filters:
+            - StripPrefix=2
+
+        - id: service-producer
+          uri: lb://service-producer
+          predicates:
+            - Path=/api/srv-producer/**
+          filters:
+            - StripPrefix=2
